@@ -37,7 +37,7 @@ class Paginator
     protected $urlGenerator;
 
     /**
-     * @var Request
+     * @var Request|null
      */
     protected $request;
 
@@ -90,8 +90,6 @@ class Paginator
         }
 
         $this->setOptions($options);
-
-        return $this;
     }
 
     /**
