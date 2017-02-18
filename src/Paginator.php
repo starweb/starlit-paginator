@@ -76,7 +76,7 @@ class Paginator
     ) {
         $this->currentPageNo = $currentPageNo;
 
-        $this->pages = ceil($totalRowCount / $rowsPerPage);
+        $this->pages = (int) ceil($totalRowCount / $rowsPerPage);
         $this->pages = ($this->pages < 1) ? 1 : $this->pages; // Pages should never be less than 1
 
         if (is_callable($urlGeneratorOrRequest)) {
@@ -141,8 +141,7 @@ class Paginator
             }
 
             // If dots will be shown to the left, show one less list item so that the total list
-            // item count won't be more than iTotalPagingPages  (this can probably be included
-            //prettier in the above calculations, but it's friday and my brain chose the easy way /Andreas)
+            // item count won't be more than max
             if (($this->currentPageNo - 1) > $leftRightSpan) {
                 $paginationStart++;
             }
