@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Paginator.
  *
@@ -95,7 +95,7 @@ class Paginator
     /**
      * @param array $options
      */
-    public function setOptions(array $options = [])
+    public function setOptions(array $options = []): void
     {
         if (isset($options['maxPagesToShow'])) {
             $this->maxPagesToShow = (int) $options['maxPagesToShow'];
@@ -117,7 +117,7 @@ class Paginator
     /**
      * @return string
      */
-    public function getHtml()
+    public function getHtml(): string
     {
         $leftRightSpan = (($this->maxPagesToShow - 1) / 2);
         $showAll = false;
@@ -209,7 +209,7 @@ class Paginator
      * @param mixed $listItem Either a page number, or the strings 'prev' or 'next'
      * @return string
      */
-    protected function getListItemHtml($listItem)
+    protected function getListItemHtml($listItem): string
     {
         $cssClass = '';
         $disabled = false;
@@ -266,7 +266,7 @@ class Paginator
      * @param int $page
      * @return string
      */
-    protected function getUrl($page)
+    protected function getUrl($page): string
     {
         if ($this->urlGenerator) {
             return call_user_func($this->urlGenerator, $page);
@@ -279,7 +279,7 @@ class Paginator
      * @param int $page
      * @return string
      */
-    protected function getRequestUrlWithNewPage($page)
+    protected function getRequestUrlWithNewPage($page): string
     {
         // Make up paginated url from current url
         $url = $this->request->getRequestUri();
@@ -293,7 +293,7 @@ class Paginator
     /**
      * @return bool
      */
-    public function hasMultiplePages()
+    public function hasMultiplePages(): bool
     {
         return ($this->pages > 1);
     }
@@ -301,7 +301,7 @@ class Paginator
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getHtml();
     }

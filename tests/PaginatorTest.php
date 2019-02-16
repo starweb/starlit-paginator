@@ -10,19 +10,19 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
      */
     private $request;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->request = Request::create('http://www.example.org', 'GET');
     }
 
 
-    public function testInvalidConstruction()
+    public function testInvalidConstruction(): void
     {
         $this->setExpectedException('\InvalidArgumentException');
         $paginator = new Paginator(1, 10, 10, null);
     }
 
-    public function testGetHtmlSinglePage()
+    public function testGetHtmlSinglePage(): void
     {
         $paginator = new Paginator(1, 10, 10, $this->request, [
             'description' => 'Showing 1 result of 10',
@@ -40,14 +40,14 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($paginator->hasMultiplePages());
     }
 
-    public function testToString()
+    public function testToString(): void
     {
         $paginator = new Paginator(1, 10, 20, $this->request);
 
         $this->assertContains('<div', (string) $paginator);
     }
 
-    public function testGetHtmlListItemsCount()
+    public function testGetHtmlListItemsCount(): void
     {
         $paginator = new Paginator(1, 10, 100, $this->request);
         $html = $paginator->getHtml();
@@ -55,7 +55,7 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(11, substr_count($html, '<li'));
     }
 
-    public function testGetHtmlMaxPages()
+    public function testGetHtmlMaxPages(): void
     {
         $paginator = new Paginator(1, 10, 100, $this->request, [
             'maxPagesToShow' => 5,
@@ -65,7 +65,7 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(7, substr_count($html, '<li'));
     }
 
-    public function testGetHtmlListItemsCountWithLastPage()
+    public function testGetHtmlListItemsCountWithLastPage(): void
     {
         $paginator = new Paginator(9, 10, 90, $this->request);
         $html = $paginator->getHtml();
@@ -73,7 +73,7 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(11, substr_count($html, '<li'));
     }
 
-    public function testGetHtmlListItemsCountWithManyRows()
+    public function testGetHtmlListItemsCountWithManyRows(): void
     {
         $paginator = new Paginator(9, 10, 200, $this->request);
         $html = $paginator->getHtml();
@@ -81,7 +81,7 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(11, substr_count($html, '<li'));
     }
 
-    public function testGetHtmlListItemsCountWithMaxPage()
+    public function testGetHtmlListItemsCountWithMaxPage(): void
     {
         $paginator = new Paginator(17, 10, 200, $this->request);
         $html = $paginator->getHtml();
@@ -89,7 +89,7 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(11, substr_count($html, '<li'));
     }
 
-    public function testGetHtmlUrl()
+    public function testGetHtmlUrl(): void
     {
         $paginator = new Paginator(1, 10, 20, $this->request);
         $html = $paginator->getHtml();
@@ -98,7 +98,7 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('page=2"', $html);
     }
 
-    public function testGetHtmlUrlGenerator()
+    public function testGetHtmlUrlGenerator(): void
     {
         $paginator = new Paginator(1, 10, 20, function($page) {
             return 'http://example.org/some-page.html?page=' . $page;
