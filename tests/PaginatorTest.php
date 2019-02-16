@@ -1,9 +1,10 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use Starlit\Paginator\Paginator;
 use Symfony\Component\HttpFoundation\Request;
 
-class PaginatorTest extends \PHPUnit_Framework_TestCase
+class PaginatorTest extends TestCase
 {
     /**
      * @var Request
@@ -18,8 +19,8 @@ class PaginatorTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidConstruction(): void
     {
-        $this->setExpectedException('\InvalidArgumentException');
-        $paginator = new Paginator(1, 10, 10, null);
+        $this->expectException(InvalidArgumentException::class);
+        new Paginator(1, 10, 10, null);
     }
 
     public function testGetHtmlSinglePage(): void
