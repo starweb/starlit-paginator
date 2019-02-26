@@ -5,6 +5,7 @@
     "keywords": ["Pagination", "Paginator"],
     "homepage": "http://github.com/starweb/starlit-paginator",
     "license": "BSD-3-Clause",
+    "version": "1.0.x-dev",
     "authors": [
         {
             "name": "Starweb AB"
