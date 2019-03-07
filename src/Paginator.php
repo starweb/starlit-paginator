@@ -219,7 +219,7 @@ class Paginator
                 $page = $this->currentPageNo - 1;
                 $cssClass = 'previous';
 
-                if ($this->currentPageNo == 1) {
+                if ($this->currentPageNo === 1) {
                     $disabled = true;
                 }
 
@@ -229,7 +229,7 @@ class Paginator
                 $page = $this->currentPageNo + 1;
                 $cssClass = 'next';
 
-                if ($this->currentPageNo == $this->pages) {
+                if ($this->currentPageNo === $this->pages) {
                     $disabled = true;
                 }
 
@@ -238,7 +238,7 @@ class Paginator
                 $linkText = $listItem;
                 $page = (int) $listItem;
 
-                if ($page == $this->currentPageNo) {
+                if ($page === $this->currentPageNo) {
                     $cssClass = 'active';
                 }
                 break;
@@ -279,7 +279,7 @@ class Paginator
      * @param int $page
      * @return string
      */
-    protected function getRequestUrlWithNewPage($page): string
+    protected function getRequestUrlWithNewPage(int $page): string
     {
         // Make up paginated url from current url
         $url = $this->request->getRequestUri();
