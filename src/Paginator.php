@@ -68,9 +68,9 @@ class Paginator
      * @param array $options
      */
     public function __construct(
-        $currentPageNo,
-        $rowsPerPage,
-        $totalRowCount,
+        int $currentPageNo,
+        int $rowsPerPage,
+        int $totalRowCount,
         $urlGeneratorOrRequest,
         array $options = []
     ) {
@@ -266,7 +266,7 @@ class Paginator
      * @param int $page
      * @return string
      */
-    protected function getUrl($page): string
+    protected function getUrl(int $page): string
     {
         if ($this->urlGenerator) {
             return call_user_func($this->urlGenerator, $page);
