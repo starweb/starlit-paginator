@@ -11,7 +11,7 @@ Add the package as a requirement to your `composer.json`:
 $ composer require starlit/paginator
 ```
 
-##Usage
+## Usage
 ```php
 <?php
 
@@ -46,8 +46,8 @@ Produces:
 ```
 
 
-##Requirements
-- Requires PHP 5.6 or above.
+## Requirements
+- Requires PHP 7.1 or above.
 
-##License
+## License
 This software is licensed under the BSD 3-Clause License - see the `LICENSE` file for details.
