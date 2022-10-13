@@ -33,11 +33,11 @@ class PaginatorTest extends TestCase
 
         $html = $paginator->getHtml();
 
-        $this->assertContains('<div', $html);
+        $this->assertStringContainsString('<div', $html);
         $this->assertEquals(0, substr_count($html, '<li'));
-        $this->assertContains('</div>', $html);
-        $this->assertContains('Showing 1', $html);
-        $this->assertContains('test-css-class', $html);
+        $this->assertStringContainsString('</div>', $html);
+        $this->assertStringContainsString('Showing 1', $html);
+        $this->assertStringContainsString('test-css-class', $html);
         $this->assertFalse($paginator->hasMultiplePages());
     }
 
@@ -45,7 +45,7 @@ class PaginatorTest extends TestCase
     {
         $paginator = new Paginator(1, 10, 20, $this->request);
 
-        $this->assertContains('<div', (string) $paginator);
+        $this->assertStringContainsString('<div', (string) $paginator);
     }
 
     public function testGetHtmlListItemsCount(): void
@@ -95,8 +95,8 @@ class PaginatorTest extends TestCase
         $paginator = new Paginator(1, 10, 20, $this->request);
         $html = $paginator->getHtml();
 
-        $this->assertContains('page=1"', $html);
-        $this->assertContains('page=2"', $html);
+        $this->assertStringContainsString('page=1"', $html);
+        $this->assertStringContainsString('page=2"', $html);
     }
 
     public function testGetHtmlUrlGenerator(): void
@@ -106,7 +106,7 @@ class PaginatorTest extends TestCase
         });
         $html = $paginator->getHtml();
 
-        $this->assertContains('href="http://example.org/some-page.html?page=1"', $html);
-        $this->assertContains('href="http://example.org/some-page.html?page=2"', $html);
+        $this->assertStringContainsString('href="http://example.org/some-page.html?page=1"', $html);
+        $this->assertStringContainsString('href="http://example.org/some-page.html?page=2"', $html);
     }
 }
